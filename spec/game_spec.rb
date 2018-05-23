@@ -78,7 +78,6 @@ describe 'A game of rock paper scissors' do
       end
     end
 
-
     context 'scissors vs paper' do
       it "announces the correct winner" do
         game.start
