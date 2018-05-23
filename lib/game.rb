@@ -1,10 +1,10 @@
 class Game
 
-  attr_reader :started, :finished
+  attr_reader :started
 
   def start
     @started = true
-    @finished = false
+    @finished = true
   end
 
   def started?
@@ -12,29 +12,29 @@ class Game
   end
   
   def finished?
-    self.finished || false
+    !self.started || false
   end
 
   def play(left = nil, right = nil)
     raise 'Game must first be started' unless started?
     return nil unless (left && right)
     if (left == :rock && right == :scissors)
-      @finished = true
+      @started = false
       "Rock beats scissors!"
     elsif (left == :scissors && right == :rock)
-      @finished = true
+      @started = false
       "Rock beats scissors!"
     elsif (left == :rock && right == :paper)
-      @finished = true
+      @started = false
       "Paper beats rock!"
     elsif (left == :paper && right == :rock)
-      @finished = true
+      @started = false
       "Paper beats rock!"
     elsif (left == :scissors && right == :paper)
-      @finished = true
+      @started = false
       "Scissors beats paper!"
     elsif (left == :paper && right == :scissors)
-      @finished = true
+      @started = false
       "Scissors beats paper!"
     elsif (left == :rock && left == right)
       "Tie game. Try again!"

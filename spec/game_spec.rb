@@ -22,35 +22,31 @@ describe 'A game of rock paper scissors' do
   end
 
   describe 'playing' do
+    let(:game) { Game.new }
 
     context 'without starting' do
       it 'can not be played if it has not started' do
-        game = Game.new
         expect { game.play }.to raise_error(RuntimeError)
       end
     end
 
     context 'after starting' do
       it 'can be played if it has started' do
-        game = Game.new
         game.start
         expect { game.play }.to_not raise_error
       end
 
       it 'returns nil when not provided with anything' do
-        game = Game.new
         game.start
         expect(game.play).to be_nil
       end
 
       it 'returns nil when only provided one rock, paper or scissor' do
-        game = Game.new
         game.start
         expect(game.play(:FAKE)).to be_nil
       end
 
       it 'does not return nil when two objects are provided' do
-        game = Game.new
         game.start
         expect(game.play(:FAKE, :FAKE)).to_not be_nil
       end
@@ -58,13 +54,12 @@ describe 'A game of rock paper scissors' do
 
     context 'rock vs scissors' do
       it 'announces the correct winner' do
-        game = Game.new
         game.start
         expect(game.play(:rock, :scissors)).to eq("Rock beats scissors!")
+        game.start
         expect(game.play(:scissors, :rock)).to eq("Rock beats scissors!")
       end
       it 'knows when a game of rock vs scissors is finished' do
-        game = Game.new
         game.start
         game.play(:rock, :scissors)
         expect(game).to be_finished
@@ -73,13 +68,12 @@ describe 'A game of rock paper scissors' do
 
     context 'rock vs paper' do
       it "announces the correct winner" do
-        game = Game.new
         game.start
         expect(game.play(:rock, :paper)).to eq("Paper beats rock!")
+        game.start
         expect(game.play(:paper, :rock)).to eq("Paper beats rock!")
       end
       it 'knows when a game of rock vs paper is finished' do
-        game = Game.new
         game.start
         game.play(:rock, :paper)
         expect(game).to be_finished
@@ -89,13 +83,12 @@ describe 'A game of rock paper scissors' do
 
     context 'scissors vs paper' do
       it "announces the correct winner" do
-        game = Game.new
         game.start
         expect(game.play(:scissors, :paper)).to eq("Scissors beats paper!")
+        game.start
         expect(game.play(:paper, :scissors)).to eq("Scissors beats paper!")
       end
       it 'knows when a game of scissors vs paper is finished' do
-        game = Game.new
         game.start
         game.play(:scissors, :paper)
         expect(game).to be_finished
@@ -104,14 +97,14 @@ describe 'A game of rock paper scissors' do
 
     context 'a tie game' do
       it "announces a tie game" do
-        game = Game.new
         game.start
         expect(game.play(:scissors, :scissors)).to eq("Tie game. Try again!")
+        game.start
         expect(game.play(:paper, :paper)).to eq("Tie game. Try again!")
+        game.start
         expect(game.play(:rock, :rock)).to eq("Tie game. Try again!")
       end
       it "knows a tie game is not finished" do
-        game = Game.new
         game.start
         game.play(:rock, :rock)
         expect(game).not_to be_finished
