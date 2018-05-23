@@ -97,7 +97,7 @@ describe 'A game of rock paper scissors' do
       it 'knows when a game of scissors vs paper is finished' do
         game = Game.new
         game.start
-        game.play(:rock, :paper)
+        game.play(:scissors, :paper)
         expect(game).to be_finished
       end
     end
