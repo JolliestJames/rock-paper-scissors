@@ -4,7 +4,7 @@ class Game
 
   def start
     @started = true
-    @finished = true
+    @finished = false
   end
 
   def started?
@@ -12,7 +12,7 @@ class Game
   end
   
   def finished?
-    self.finished || true 
+    self.finished || false
   end
 
   def play(left = nil, right = nil)

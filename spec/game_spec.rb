@@ -114,7 +114,7 @@ describe 'A game of rock paper scissors' do
         game = Game.new
         game.start
         game.play(:rock, :rock)
-        expect(game).to be_finished
+        expect(game).not_to be_finished
       end
     end
 
